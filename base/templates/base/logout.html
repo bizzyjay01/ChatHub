@@ -1,0 +1,10 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<form action="{% url 'logout' %}" method = 'POST'>
+    <p>Ready to leave? See you soon</p>
+    {%csrf_token%}
+    <a href="{{request.META.HTTP_REFERER}}">GO back</a>
+    <input type="submit" value="Confirm">
+</form>
+{% endblock %}

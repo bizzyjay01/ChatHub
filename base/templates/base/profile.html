@@ -1,0 +1,183 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<style>
+    #avatarModal {
+    display: none;
+
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .profile-page {
+        padding: 20px;
+    }
+
+  
+
+    .avatar {
+        cursor: pointer;
+    }
+
+    /* The modal */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40%;
+        height: 70%;
+        background-color: rgba(0, 0, 0, 0.7);
+        overflow: auto;
+        border-radius: 10px;
+        padding: 20px;
+        box-sizing: border-box;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        max-width:50%;
+        max-height: 70%;
+        border-radius: 5px;
+    }
+
+    .close {
+        color: white;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    @media screen and (max-width: 900px) {
+         /* The modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            height: 50%;
+            background-color: rgba(0, 0, 0, 0.7);
+            overflow: auto;
+            border-radius: 10px;
+            padding: 20px;
+            box-sizing: border-box;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width:70%;
+            max-height: 50%;
+            border-radius: 5px;
+        }
+
+    }
+</style>
+
+
+<main class="profile-page layout layout--3">
+    <div class="container">
+        <!-- Topics Start -->
+        {% include 'base/topics_component.html' %}
+      
+      <!-- Topics End -->
+
+      <!-- Room List Start -->
+        <div class="roomList">
+            <div class="profile">
+                <div class="profile__avatar">
+                    <div class="avatar avatar--large active" onclick="expandAvatar()">
+                        <img src="{{user.avatar.url}}" />
+                    </div>
+                </div>
+
+                <!-- The modal for the expanded avatar -->
+               
+
+                <div class="profile__info">
+                    <h3>{{user.name}}</h3>
+                    <p>@{{user.username}}</p>
+
+                    {% if request.user == user %}
+                    <a href="{% url 'update-user' %}" class="btn btn--main btn--pill">Edit Profile</a>
+                    {% endif %}
+                </div>
+                <div class="profile__about">
+                    <h3>About</h3>
+                    <p>
+                    {{user.bio}}
+                    </p>
+                </div>
+                <div class="profile__about">
+                    <h3>Date of birth</h3>
+                    {% if request.user == user %}
+                    <p>{{user.date_of_birth}}</p>
+                    {% else %}
+                    <p>
+                    {{user.get_short_date_of_birth}}
+                    </p>
+                    {% endif %}
+                </div>
+                <div class="profile__about">
+                    <h3>Location</h3>
+                    <p>
+                    {{user.location}}
+                    </p>
+                </div>
+                
+            </div>
+
+            <div class="roomList__header">
+            <div>
+                <h2>Chat Rooms Hosted by {{user.username}}</a>
+                </h2>
+            </div>
+            </div>
+
+            {% include 'base/feed_component.html' %}
+        </div>
+      <!-- Room List End -->
+
+      <!-- Activities Start -->
+        {% include 'base/activity_component.html' %}
+      <!-- Activities End -->
+    </div>
+</main>
+
+<div id="avatarModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="expandedAvatar" src="{{user.avatar.url}}"> 
+</div>
+
+<script>
+    function expandAvatar() {
+        var modal = document.getElementById('avatarModal');
+        modal.style.display = 'flex';
+    }
+
+    function closeModal() {
+        var modal = document.getElementById('avatarModal');
+        modal.style.display = 'none';
+    }
+</script>
+</html>
+
+{% endblock %}
+
+
+
+
+
