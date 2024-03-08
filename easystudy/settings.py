@@ -51,8 +51,6 @@ AUTH_USER_MODEL = 'base.User'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
 
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-
     "corsheaders.middleware.CorsMiddleware",
 
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -143,12 +141,7 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/images/'
 
 # This production code might break development mode, so we check whether we're in DEBUG mode
-if not DEBUG:
-    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
-    # and renames the files with unique names for each version to support long-term caching
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 
 # Emailing settings
@@ -173,19 +166,6 @@ STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
 AWS_S3_FILE_OVERWRITE = False #i.e if a user uploads a file that is the same as another user, it should not be overwritten
 AWS_DEFAULT_ACL = None
-
-
-# STORAGES = {
-#      # Media file (image) management
-#      "default": {
-#           "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
-#      },
-
-#      # CSS and JS file management
-#      "staticfiles": {
-#           "BACKEND": "storages.backends.s3boto3.S3StaticStorage",
-#      },
-# }
 
 # HOW MUCH time the token will be available to reset password, i.e 14400 seconds which is 4hours
 PASSWORD_RESET_TIMEOUT = 14400
