@@ -25,7 +25,7 @@ class User(AbstractUser):
      email = models.EmailField(unique=True, null=True)
      bio = models.TextField(null=True)
 
-     avatar = models.ImageField(null=True, default="avatar.svg") # the imagefield rely on a third party called 'pillow'. run python -m pip install pillow. it's an image processing library
+     avatar = models.ImageField(null=True, upload_to="images/", default="avatar.svg") # the imagefield rely on a third party called 'pillow'. run python -m pip install pillow. it's an image processing library
      date_of_birth = models.DateField(null=True, blank=True)
      location = models.CharField(max_length=100, null=True, blank=True)
 
