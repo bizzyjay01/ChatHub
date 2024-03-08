@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'storages',
     'corsheaders',
     'rest_framework',
-    'whitenoise',
 ]
 
 AUTH_USER_MODEL = 'base.User'
