@@ -33,7 +33,9 @@
 
                     <h1>ChatHub</h1>
                 </a>
-                {% endif %} {% if user.is_authenticated %}
+                {% endif %} 
+                
+                {% if user.is_authenticated %}
                 <form
                     class="header__search"
                     action="{% url 'home' %}"
@@ -130,8 +132,8 @@
 
                         <!-- Not Logged In -->
                         <a href="{% url 'login' %}">
-                            <img src="{% static 'images/avatar.svg' %}" />
-                            <p>Login</p>
+                            
+                            <p style="margin-top: 10px">Login</p>
                         </a>
                         {% endif %}
                     </div>
