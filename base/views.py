@@ -34,12 +34,11 @@ def activate(request, uidb64, token):
         user.save()
 
         messages.success(request, "Thank you for your email confirmation. Now you can login your account.")
-        return redirect('login')
     
     else:
         messages.error(request, "Activation link is invalid")
 
-    return redirect('login')
+    return redirect('activate_email_confirm')
 
 
 def activateEmail(request, user, to_email):
@@ -61,6 +60,12 @@ def activateEmail(request, user, to_email):
 
 def index(request):
     return render(request, 'base/index.html')
+
+def email_confirm(request):
+    return render(request, 'base/activate_email.html')
+
+def activate_email_confirm(request):
+    return render(request, 'base/activate_email_confirm.html')
 
 
 def home(request):
@@ -252,7 +257,7 @@ def registerPage(request):
             user.save()
             activateEmail(request, user, form.cleaned_data.get('email'))
             # login(request, user)
-            return redirect('login')
+            return redirect('activate_email')
         else:
             messages.error(request, 'An error occured during registration')
     return render(request, 'base/login_register.html', {'form':form})

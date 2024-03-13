@@ -19,5 +19,8 @@ urlpatterns = [
     path('update-user/', views.updateUser, name = 'update-user'),
     path('topics/', views.topicsPage, name = 'topics'),
     path('activity/', views.activityPage, name = 'activity'),
-    path('activate/<uidb64>/<token>', views.activate, name='activate')
+    path('activate/<uidb64>/<token>', views.activate, name='activate'),
+
+    path('activate_email', views.email_confirm, name='activate_email'),
+    path('activate_email_confirm', views.activate_email_confirm, name='activate_email_confirm'),
 ]
