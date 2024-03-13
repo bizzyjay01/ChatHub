@@ -97,7 +97,7 @@ DATABASES = {
 # Render PostgreSQL database (live)
 
 DATABASES = {
-     'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+     'default': dj_database_url.parse('postgres://chathub_database_user:QRs4EcyfuFVsOaUsMlqxfbeyag8C4wlm@dpg-cnk95jn79t8c73c67fi0-a.ohio-postgres.render.com/chathub_database')
 }
 
 
@@ -158,6 +158,8 @@ EMAIL_USE_SSL = 'True'
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
+
+print(AWS_STORAGE_BUCKET_NAME)
 
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
