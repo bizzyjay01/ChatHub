@@ -146,7 +146,8 @@ MEDIA_URL = '/images/'
 # Emailing settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-FROM_EMAIL = os.environ.get('FROM_EMAIL')
+DEFAULT_FROM_EMAIL = 'ChatHub bizzyjay933@gmail.com'
+# FROM_EMAIL = os.environ.get('FROM_EMAIL')
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = 465
