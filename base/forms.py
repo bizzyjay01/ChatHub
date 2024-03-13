@@ -9,6 +9,7 @@ from django.contrib.auth.password_validation import (
 
 
 class MyUserCreationForm(UserCreationForm):
+    name = forms.CharField(label='Full Name', max_length=200, required=True)
     class Meta:
         model = User
         fields = ['name', 'username', 'email', 'password1', 'password2']
